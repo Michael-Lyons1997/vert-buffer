@@ -159,8 +159,50 @@ void Game::update()
 	{
 		clock.restart();
 	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::T))
+	{
+		topLeft = newmat.Translate(2, 2) * topLeft;
+		bottomLeft = newmat.Translate(2, 2) * bottomLeft;
+		topRight = newmat.Translate(2, 2) * topRight;
+		bottomRight = newmat.Translate(2, 2) * bottomRight;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		topLeft = newmat.Scale3D(1) * topLeft;
+		bottomLeft = newmat.Scale3D(1) * bottomLeft;
+		topRight = newmat.Scale3D(1) * topRight;
+		bottomRight = newmat.Scale3D(1) * bottomRight;
+	}
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+	{
+		topLeft = newmat.Rotation(1) * topLeft;
+		bottomLeft = newmat.Rotation(1) * bottomLeft;
+		topRight = newmat.Rotation(1) * topRight;
+		bottomRight = newmat.Rotation(1) * bottomRight;
+	}
+	vertex[0].coordinate[0] = bottomLeft.getX();
+	vertex[0].coordinate[1] = bottomLeft.getY();
+	vertex[0].coordinate[2] = bottomLeft.getZ();
 
+	vertex[1].coordinate[0] = topLeft.getX();
+	vertex[1].coordinate[1] = topLeft.getY();
+	vertex[1].coordinate[2] = topLeft.getZ();
 
+	vertex[2].coordinate[0] = topRight.getX();
+	vertex[2].coordinate[1] = topRight.getY();
+	vertex[2].coordinate[2] = topRight.getZ();
+
+	vertex[3].coordinate[0] = topRight.getX();
+	vertex[3].coordinate[1] = topRight.getY();
+	vertex[3].coordinate[2] = topRight.getZ();
+
+	vertex[4].coordinate[0] = bottomRight.getX();
+	vertex[4].coordinate[1] = bottomRight.getY();
+	vertex[4].coordinate[2] = bottomRight.getZ();
+
+	vertex[5].coordinate[0] = bottomLeft.getX();
+	vertex[5].coordinate[1] = bottomLeft.getY();
+	vertex[5].coordinate[2] = bottomLeft.getZ();
 
 	cout << "Update up" << endl;
 }
