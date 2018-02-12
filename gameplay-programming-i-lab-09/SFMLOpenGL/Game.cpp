@@ -4,6 +4,36 @@ static bool flip;
 
 Game::Game() : window(VideoMode(800, 600), "OpenGL Cube VBO")
 {
+	newmat.setA11(1);
+	newmat.setA12(1);
+	newmat.setA13(1);
+
+	newmat.setA21(1);
+	newmat.setA22(1);
+	newmat.setA23(1);
+
+	newmat.setA31(1);
+	newmat.setA32(1);
+	newmat.setA33(1);
+
+	bottomLeft.setX(-0.5f);
+	bottomLeft.setY(-0.5f);
+	bottomLeft.setZ(0.0f);
+
+	topLeft.setX(-0.5f);
+	topLeft.setY(0.5f);
+	topLeft.setZ(0.0f);
+
+	topRight.setX(0.5f);
+	topRight.setY(0.5f);
+	topRight.setZ(0.0f);
+
+	bottomRight.setX(0.5f);
+	bottomRight.setY(-0.5f);
+	bottomRight.setZ(0.0f);
+
+
+
 }
 
 Game::~Game() {}
@@ -53,29 +83,29 @@ void Game::initialize()
 
 	/* Vertices counter-clockwise winding */
 
-	vertex[0].coordinate[0] = -0.5f;
-	vertex[0].coordinate[1] = -0.5f;
-	vertex[0].coordinate[2] = 0.0f;
+	vertex[0].coordinate[0] = bottomLeft.getX();
+	vertex[0].coordinate[1] = bottomLeft.getY();
+	vertex[0].coordinate[2] = bottomLeft.getZ();
 
-	vertex[1].coordinate[0] = -0.5f;
-	vertex[1].coordinate[1] = 0.5f;
-	vertex[1].coordinate[2] = 0.0f;
+	vertex[1].coordinate[0] = topLeft.getX();
+	vertex[1].coordinate[1] = topLeft.getY();
+	vertex[1].coordinate[2] = topLeft.getZ();
 
-	vertex[2].coordinate[0] = 0.5f;
-	vertex[2].coordinate[1] = 0.5f;
-	vertex[2].coordinate[2] = 0.0f;
+	vertex[2].coordinate[0] = topRight.getX();
+	vertex[2].coordinate[1] = topRight.getY();
+	vertex[2].coordinate[2] = topRight.getZ();
 
-	//vertex[3].coordinate[0] = 0.5f; 
-	//vertex[3].coordinate[1] = 0.5f;  
-	//vertex[3].coordinate[2] = 0.0f;
+	vertex[3].coordinate[0] = topRight.getX(); 
+	vertex[3].coordinate[1] = topRight.getY();  
+	vertex[3].coordinate[2] = topRight.getZ();
 
-	//vertex[4].coordinate[0] = 0.5f; 
-	//vertex[4].coordinate[1] = -0.5f;  
-	//vertex[4].coordinate[2] = 0.0f;
+	vertex[4].coordinate[0] = bottomRight.getX(); 
+	vertex[4].coordinate[1] = bottomRight.getY();  
+	vertex[4].coordinate[2] = bottomRight.getZ();
 
-	//vertex[5].coordinate[0] = -0.5f; 
-	//vertex[5].coordinate[1] = -0.5f;  
-	//vertex[5].coordinate[2] = 0.0f;
+	vertex[5].coordinate[0] = bottomLeft.getX(); 
+	vertex[5].coordinate[1] = bottomLeft.getY();  
+	vertex[5].coordinate[2] = bottomLeft.getZ();
 
 	vertex[0].color[0] = 0.1f;
 	vertex[0].color[1] = 1.0f;
@@ -128,29 +158,9 @@ void Game::update()
 	if (elapsed.asSeconds() >= 1.0f)
 	{
 		clock.restart();
-
-		if (!flip)
-		{
-			flip = true;
-		}
-		else
-			flip = false;
 	}
 
-	if (flip)
-	{
-		rotationAngle += 0.005f;
 
-		if (rotationAngle > 360.0f)
-		{
-			rotationAngle -= 360.0f;
-		}
-	}
-
-	//Change vertex data
-	vertex[0].coordinate[0] += -0.0001f;
-	vertex[0].coordinate[1] += -0.0001f;
-	vertex[0].coordinate[2] += -0.0001f;
 
 	cout << "Update up" << endl;
 }
